@@ -1,6 +1,11 @@
-## [22.1.1]
+## [Unreleased]
 
 * [Android] Fixed a `NullPointerException` crash in `setSmallIcon` (`Attempt to invoke virtual method 'int java.lang.Integer.intValue()' on a null object reference`) when a scheduled notification is delivered with no `icon`, no persisted default icon, and a null legacy `iconResourceId`. This can happen when a notification serialized by an older version of the plugin fires after an app update. The application's own icon is now used as a fallback so notification delivery no longer crashes. Fixes [#298](https://github.com/MaikuB/flutter_local_notifications/issues/298) and [#2049](https://github.com/MaikuB/flutter_local_notifications/issues/2049)
+
+## [22.2.0]
+
+* [Android][iOS][macOS] added support for callbacks to fire when a notification has been dismissed. This requires opting in by where the key requirements is to make use of the `dismissIsolate` property added to the `AndroidNotificationDetails` and `DarwinNotificationDetails` class. This indicates which isolate should be used to handle when a notification has been dismissed. Note on macOS, there is no support for background isolates so callback will always fire on the main isolate despite what is specified. Please see example app for more details on how to set up handling dismissals. Thanks to the PR from from [Vasily Laushkin](https://github.com/vlaushkin)
+* [iOS] fixed issue [#2807](https://github.com/MaikuB/flutter_local_notifications/issues/2807) where the manifest for SPM incorrectly declared the minimum iOS version is 11 when it should have been 13. Thanks to the PR from [Bizzwell](https://github.com/Bizzwell)
 
 ## [22.1.0]
 
